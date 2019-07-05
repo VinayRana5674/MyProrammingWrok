@@ -1,31 +1,51 @@
-#include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
 int main()
 {
-        int n,i;
-        cin>>n;
-        int arr[n];
-        for(i=0;i<n;i++)
-        {
-                cin>>arr[i];
-        }
-        int countmax=0;
-        int x = sizeof(arr)/sizeof(arr[0]); 
-        cout<<"\n\n size is"<<x;
-        sort(arr,arr+x);
-        for(i=0;i<n;i++)
-        {
-        	cout<<"  "<<arr[i];
+	int n1,n2;
+	cin>>n1>>n2;
+	int a[n1],b[n2];
+	int count=0;
+	map<int,int> m;
+	for(auto i=0;i<n1;i++) 
+	{cin>>a[i];
+		{
+		
+				m[a[i]]++;
+				count++;
 		}
-       for(i=n-1;i>=0;i--)
-       {
-               if(arr[n-1]==arr[i])
-               {
-                       countmax++;
-               }
-       }
-       cout<<countmax;
+	}
+	for(auto i=0;i<n2;i++)
+	{	cin>>b[i];
+	
+				m[b[i]]++;
+				count++;
+			
+		
+	}
+	int newarray[count];
+	int k=0;
+	for(auto i=m.begin();i!=m.end();i++)
+	{
+	while(i->second!=0)
+	{
+		newarray[k]=i->first;
+		i->second--;
+		k++;
+	}
+	}                      
+		int median;
+if(count%2==0)// for even number of element;
+{
 
+median=(newarray[count/2]+newarray[count/2 +1])/2;
+	
+}
+else
+{
+	median=newarray[count/2 ] ;
 }
 
+
+cout<<median;
+}

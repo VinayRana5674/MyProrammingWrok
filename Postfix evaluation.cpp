@@ -10,23 +10,22 @@ int performoperations(char operation, int operand1, int operand2)
 	else if (operation == '-') return operand1 - operand2;
 	else if (operation == '*') return operand1 * operand2;
 	else if (operation == '/') return operand1 / operand2;
-	else if (operation == '^') return pow(operand1,operand2);
 	else cout << "\nUnexpected error";
 	return -1;
 }
 bool Isoperator(char c)
 {
-	if (c == '+' || c == '-' || c == '*' || c == '/' || c=='^')
+	if (c == '+' || c == '-' || c == '*' || c == '/')
 		return true;
 	return false;
 }
-bool Is
-numericdigit(char c)
+bool Isnumericdigit(char c)
 {
 	if (c >= '0' && c <= '9')
 		return true;
 	return false;
 }
+
 int postfixevaluation(string expression)
 {
 	stack<int> s;
@@ -36,8 +35,8 @@ int postfixevaluation(string expression)
 			continue;
 		else if (Isoperator(expression[i]))
 		{
-			int operand2 = s.top(); s.pop();
 			int operand1 = s.top(); s.pop();
+			int operand2 = s.top(); s.pop();
 			int result = performoperations(expression[i], operand1, operand2);
 			s.push(result);
 		}
@@ -53,9 +52,8 @@ int postfixevaluation(string expression)
 			i--;
 			s.push(operand);
 		}
-//cout<<"\nValue of i is "<<i;
+
 	}
-	
 	return s.top();
 }
 
