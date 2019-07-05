@@ -19,7 +19,7 @@ int main()
 		if(primes[i]==1)
 		{
 		
-		for(j=2;i*j<=n;j++)
+		for(j=2;j<=n;j++)
 		{
 			primes[i*j]=0;
 		}

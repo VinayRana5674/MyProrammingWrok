@@ -17,7 +17,9 @@ int main()
 				count++;
 			}
 		}
-		}
+		
+		
+	}
 	for(auto i=0;i<n2;i++)
 	{
 		cin>>b[i];

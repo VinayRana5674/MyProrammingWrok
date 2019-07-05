@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-
 typedef int k;
 #define rep(i,n) for(i=0;i<n;i++)
 using namespace std;

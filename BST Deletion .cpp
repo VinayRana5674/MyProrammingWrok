@@ -45,7 +45,7 @@ bool search(BST* root, int data)
 	{
 		return search(root->right, data);
 	}
-	
+
 }
 int main()
 {
