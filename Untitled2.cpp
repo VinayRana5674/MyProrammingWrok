@@ -1,27 +1,31 @@
+#include <iostream> 
+#include <vector> 
 #include<bits/stdc++.h>
-using namespace std;
-int main()
-{
-int a2[10]={2,-2,-7,6,-8,8,16,16,10,10};
-int a[4]={2,-2,-8,8};
-int i,j;
-		
-	int x;
-	
-		for(i=0;i<4;i++)
-		{
-			int var=0;
-				for(j=0;j<10;j++)
-				{
-				if(a[i]==a2[j])
-				{
-					
-					var=1;
-					 x=a[i];
-				}
-				
-	}
-if(var==1)
-cout<<"\n"<<x;
-}
-}
+  
+using namespace std; 
+  
+int main() 
+{ 
+    vector<int> g1; 
+  
+    for (int i = 1; i <= 5; i++) 
+        g1.push_back(i); 
+  
+    cout << "Output of begin and end: "; 
+    for (auto i = g1.begin(); i != g1.end(); ++i) 
+        cout << *i << " "; 
+  
+    cout << "\nOutput of cbegin and cend: "; 
+    for (auto i = g1.cbegin(); i != g1.cend(); ++i) 
+        cout << *i << " "; 
+  
+    cout << "\nOutput of rbegin and rend: "; 
+    for (auto ir = g1.rbegin(); ir != g1.rend(); ++ir) 
+        cout << *ir << " "; 
+  
+    cout << "\nOutput of crbegin and crend : "; 
+    for (auto ir = g1.crbegin(); ir != g1.crend(); ++ir) 
+        cout << *ir << " "; 
+  
+    return 0; 
+} 

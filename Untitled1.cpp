@@ -1,73 +1,24 @@
-#include<iostream>
-#include <stack>
+#include<bits/stdc++.h>
 using namespace std;
-void checkbalance(string str,int t)
-{
-	int i;
-	cin>>t;
-	while(t--)
-	{
-	cin>>str;
-	stack <char> check;
-	for(i=0;i<str.length();i++)
-	{
-		if(str[i]== '(' || str[i]== '{' || str[i]== '[')
-		{
-			check.push(str[i]);
-		}
-		else
-		{
-			if(check.empty())
-			{
-				cout<<"not balanced";
-				break;
-			}
-			if(str[i]==')')
-			{
-				if(check.top()!='(')
-				{
-					cout<<"not balanced";
-					break;
-				}
-				check.pop();
-			
-			}
-			if(str[i]=='}')
-			{
-				if(check.top()!='{')
-				{
-					cout<<"not balanced";
-					break;
-				}
-				else
-				check.pop();
-			}
-			if(str[i]==']')
-			{
-				if(check.top()!='[')
-				{
-					cout<<"not balanced";
-					break;
-				}
-				check.pop();
-			}
-			
-			}
-		}
-		if(!check.empty())
-		{
-			cout<<"not balanced";
-		}
-		else
-		{
-			cout<<"balanced";
-		}
-	}
-}
 int main()
 {
-	string s;
-	int t;
 	
-	checkbalance(s,t);
+	int i;
+	string str[5];
+	str[1]="4342343423";
+	string ptr[5];
+	ptr[1]="345623";
+	string temp=str[1];
+	string ptr_temp=ptr[1];
+	cout<<"\n"<<temp;
+	cout<<"\n"<<ptr_temp;
+	if(temp.find(ptr_temp))
+	{
+		cout<<"True";
+	}
+	else
+	{
+		cout<<"False";
+	}
+	
 }

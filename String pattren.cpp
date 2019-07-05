@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// Complete the staircase function below.
 void staircase(int n) {
     
 for(int i=0;i<n;i++)
