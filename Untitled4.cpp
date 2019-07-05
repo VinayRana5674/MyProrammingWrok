@@ -1,9 +1,2 @@
-//print the address of main function
-//print address of any user defind function
-#include<stdio.h>
-using namespace std;
-int main()
-{
-	printf("%u",main());
-}
-
+sort( vec.begin(), vec.end() );
+vec.erase( unique( vec.begin(), vec.end() ), vec.end() );

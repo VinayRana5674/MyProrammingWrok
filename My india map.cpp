@@ -9,14 +9,14 @@ int main()
 {
 		system("color C");
 	j a = 10, b = 0, c = 10;
-						char* str = "TFy!QJu ROo TNn(ROo)SLq SLq ULo+UHs UJq "
+	char* str = "TFy!QJu ROo TNn(ROo)SLq SLq ULo+UHs UJq "
 				"TNn*RPn/QPbEWS_JSWQAIJO^NBELPeHBFHT}TnALVlBL"
 				"OFAkHFOuFETpHCStHAUFAgcEAelclcn^r^r\\tZvYxXyT|S~Pn SPm "
 				"SOn TNn ULo0ULo#ULo-WHq!WFs XDt!";
 	while (a != 0)
 	{
 		system("color C");
-				a = str[b++];
+	a = str[b++];
 		while (a-- > 64)
 		{
 			if (++c == 90)
@@ -27,12 +27,11 @@ int main()
 			else
 			{
 				if (b % 2 == 0)
-					cout<<"v";
+					putchar('!');
 				else
 					putchar(' ');
 			}
 		}
-		
 	}
 	return 0;
 }

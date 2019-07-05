@@ -19,14 +19,14 @@ void checkbalance(string str,int t)
 		{
 			if(check.empty())
 			{
-				cout<<"not balanced";
+				cout<<"\nnot balanced";
 				break;
 			}
 			if(str[i]==')')
 			{
 				if(check.top()!='(')
 				{
-					cout<<"not balanced";
+					cout<<"\nnot balanced";
 					break;
 				}
 				check.pop();
@@ -36,17 +36,17 @@ void checkbalance(string str,int t)
 			{
 				if(check.top()!='{')
 				{
-					cout<<"not balanced";
+					cout<<"\nnot balanced";
 					break;
 				}
-				else
+			
 				check.pop();
 			}
 			if(str[i]==']')
 			{
 				if(check.top()!='[')
 				{
-					cout<<"not balanced";
+					cout<<"\nnot balanced";
 					break;
 				}
 				check.pop();
@@ -56,11 +56,11 @@ void checkbalance(string str,int t)
 		}
 		if(!check.empty())
 		{
-			cout<<"not balanced";
+			cout<<"\nnot balanced";
 		}
 		else
 		{
-			cout<<"balanced";
+			cout<<"\nbalanced";
 		}
 	}
 }
