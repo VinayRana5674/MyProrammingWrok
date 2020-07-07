@@ -32,7 +32,7 @@ Database Used:- SnowFlake <br/>user:- vrana <br/>password :- 18910352aA<br/>
 Cloud Service Used:- Azure Databricks, Azure Key Vault</br>
 Framework:- Spark
 
-Once login in successfull please open the notebook with given url and just click on run all. My main method is at the end of code, their you can see the LOGS of code execution.
+Once login is successfull please open the notebook with given url and just click on run all. My main method is at the end of code, their you can see the LOGS of code execution.
 
 
 <h1>SECTION B :-) Details of all the tables and their schema, [with commands to recreate them] </h1>
