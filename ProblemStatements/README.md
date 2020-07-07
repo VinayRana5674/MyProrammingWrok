@@ -29,18 +29,17 @@ https://om02513.east-us-2.azure.snowflakecomputing.com/console\#/internal/worksh
 <br/>
 Database Used:- SnowFlake <br/>user:- vrana <br/>password :- 18910352aA<br/>
 
-Cloud Service Used:- Azure Databricks, Azure Key Vault Framework:- Spark
-Once login in successfull please open the notebook with given url and
-just click on run all. My main method is at the end of code, their you
-can see the LOGS of code execution.
+Cloud Service Used:- Azure Databricks, Azure Key Vault</br>
+Framework:- Spark
+
+Once login in successfull please open the notebook with given url and just click on run all. My main method is at the end of code, their you can see the LOGS of code execution.
 
 
-<h1>SECTION B :-) Details of all the tables and their schema, [with commands
-to recreate them] </h1>
+<h1>SECTION B :-) Details of all the tables and their schema, [with commands to recreate them] </h1>
 
 
 1:- PRODUCTS TABLE ( CONSIST OF PRODUCT DETAILS) <br/>
-2:-AGGREGATE_PRODUCT_TABLE ( CONSIST of rows with "name" and "no. of products" as the columns.)<br/>
+2:- AGGREGATE_PRODUCT_TABLE ( CONSIST of rows with "name" and "no. of products" as the columns.)<br/>
 
 PRODUCTS :-   
 
