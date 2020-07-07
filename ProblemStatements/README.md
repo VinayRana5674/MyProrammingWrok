@@ -45,9 +45,9 @@ to recreate them] </h1>
 PRODUCTS :-   
 
 CREATE OR REPLACE TABLE PRODUCTS <br/>
-(
+(<br/>
 NAME VARCHAR(50), SKU<br/>
-VARCHAR(50), DESCRIPTION VARCHAR(300)
+VARCHAR(50), DESCRIPTION VARCHAR(300)<br/>
 );<br/>
 
 
@@ -60,18 +60,17 @@ NUMBER(38,0) NOT NULL <br/>
 );<br/>
 
 
-<hr>SECTION C:- What is done from “Points to achieve” and number of entriesin all your tables with sample 10 rows from each</hr>.
+<h1>SECTION C:- What is done from “Points to achieve” and number of entriesin all your tables with sample 10 rows from each</h1>.<br/>
 
-OOPS Conecppt Implementation :- COMPLETED non-blocking parallel
-ingestion of data :- COMPLETED ( Total time taken to run whole process
-1.35 to 1.43 Mintues) Support for updating existing products :-
-COMPLETED Product Data Ingestion in same Table :- COMPLETED:- Aggregated
-table on above rows with `name` and `no. of products` :- COMPLETED
+OOPS Conecppt Implementation :- COMPLETED <br/>
+Non-blocking parallel ingestion of data :- COMPLETED ( Total time taken to run whole process 1.35 to 1.40 Mintues) <br/>
+Support for updating existing products :- COMPLETED<br/>
+Product Data Ingestion in same Table :- COMPLETED<br/>
+Aggregated table on above rows with `name` and `no. of products` :- COMPLETED<br/>
 
-DESCRIPTION OF TASKS DONE TO ACHIEVE REQUIREMENTS.
+DESCRIPTION OF TASKS DONE TO ACHIEVE REQUIREMENTS.<br/>
 
-=============| PART A:- Support for updating existing products
-|=======================
+<h3>PART A:- Support for updating existing products</h3>
 
 1:- PRODUCTS table. :- This table contains The Product details.
 
