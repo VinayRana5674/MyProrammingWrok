@@ -43,7 +43,7 @@ Once login in successfull please open the notebook with given url and just click
 
 PRODUCTS :-   
 
-CREATE OR REPLACE TABLE PRODUCTS <br/>
+CREATE TABLE PRODUCTS <br/>
 (<br/>
 NAME VARCHAR(50),<br/> 
 SKU VARCHAR(50), <br/>
@@ -53,7 +53,7 @@ DESCRIPTION VARCHAR(300)<br/>
 
 AGGREGATE\_PRODUCT\_TABLE :- 
 
-CREATE OR REPLACE TABLE AGGREGATE_PRODUCT_TABLE <br/>
+CREATE TABLE AGGREGATE_PRODUCT_TABLE <br/>
 (<br/>
 NAME VARCHAR(50), <br/>
 NO_OF_PRODUCTS NUMBER(38,0) <br/>
