@@ -1,5 +1,4 @@
-================================= SECTION A:- Steps to run code. |
-=================================
+== SECTION A:- Steps to run code. 
 
 It is setup in Azure Databricks, Created a custom databricks runtime
 image too but that would eventually take lot of setup you to run. So the
