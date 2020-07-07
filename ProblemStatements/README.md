@@ -8,23 +8,26 @@ I am attaching my DATABRICKS username and password and SNOWFALKE
 DATABASE user name and password:-
 
 Databricks Notebook Link :-
-https://adb-1277017978199729.9.azuredatabricks.net/?o=1277017978199729\#notebook/1718613760409762/command/1718613760409771
-Email :- vinay.11605674@lpu.in Password :- 18910352@\#aA
+https://adb-1277017978199729.9.azuredatabricks.net/?o=1277017978199729\#notebook/1718613760409762/command/1718613760409771 <br/>
+<br/>
+Email :- vinay.11605674@lpu.in <br/>Password :- 18910352@\#aA<br/>
 
 If you want to check How code works in case of updates, Please use below
 link to upload NEW CSV file you have and then rename the file name in
 "def main():" for "filepath" variable. It should look something like
 this.
 
-OLD:- filepath = "/FileStore/tables/products.csv" NEW:- filepath =
-"/FileStore/tables/{NEW\_FILE\_NAME\_HERE}.csv"
+OLD:- filepath = "/FileStore/tables/products.csv" <br/>
+NEW:- filepath = "/FileStore/tables/{NEW\_FILE\_NAME\_HERE}.csv"
 
 URL TO UPLOAD NEW FILE :-
 https://adb-1277017978199729.9.azuredatabricks.net/?o=1277017978199729\#tables/new
 
+
 Dabase URL :-
 https://om02513.east-us-2.azure.snowflakecomputing.com/console\#/internal/worksheet
-Database Used:- SnowFlake user:- vrana password :- 18910352aA
+<br/>
+Database Used:- SnowFlake <br/>user:- vrana <br/>password :- 18910352aA<br/>
 
 Cloud Service Used:- Azure Databricks, Azure Key Vault Framework:- Spark
 Once login in successfull please open the notebook with given url and
@@ -34,23 +37,30 @@ can see the LOGS of code execution.
 
 <h1>SECTION B :-) Details of all the tables and their schema, [with commands
 to recreate them] </h1>
-============================================================================================
 
-1:- PRODUCTS TABLE ( CONSIST OF PRODUCT DETAILS) 2:-
-AGGREGATE\_PRODUCT\_TABLE ( CONSIST of rows with "name" and "no. of
-products" as the columns.
 
-PRODUCTS :- CREATE OR REPLACE TABLE PRODUCTS ( NAME VARCHAR(50), SKU
-VARCHAR(50), DESCRIPTION VARCHAR(300) );
+1:- PRODUCTS TABLE ( CONSIST OF PRODUCT DETAILS) <br/>
+2:-AGGREGATE_PRODUCT_TABLE ( CONSIST of rows with "name" and "no. of products" as the columns.)<br/>
 
-AGGREGATE\_PRODUCT\_TABLE :- CREATE OR REPLACE TABLE
-AGGREGATE\_PRODUCT\_TABLE ( NAME VARCHAR(50), NO\_OF\_PRODUCTS
-NUMBER(38,0) NOT NULL );
+PRODUCTS :-   
 
-=========================================================================================================================
-SECTION C:- What is done from “Points to achieve” and number of entries
-in all your tables with sample 10 rows from each.|
-==========================================================================================================================
+CREATE OR REPLACE TABLE PRODUCTS <br/>
+(
+NAME VARCHAR(50), SKU<br/>
+VARCHAR(50), DESCRIPTION VARCHAR(300)
+);<br/>
+
+
+AGGREGATE\_PRODUCT\_TABLE :- 
+
+CREATE OR REPLACE TABLE AGGREGATE_PRODUCT_TABLE <br/>
+(<br/>
+NAME VARCHAR(50), NO\_OF\_PRODUCTS<br/>
+NUMBER(38,0) NOT NULL <br/>
+);<br/>
+
+
+<hr>SECTION C:- What is done from “Points to achieve” and number of entriesin all your tables with sample 10 rows from each</hr>.
 
 OOPS Conecppt Implementation :- COMPLETED non-blocking parallel
 ingestion of data :- COMPLETED ( Total time taken to run whole process
