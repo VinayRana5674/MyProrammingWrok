@@ -60,7 +60,7 @@ NUMBER(38,0) NOT NULL <br/>
 );<br/>
 
 
-<h1>SECTION C:- What is done from “Points to achieve” and number of entriesin all your tables with sample 10 rows from each</h1>.<br/>
+<h1>SECTION C:- What is done from “Points to achieve” and number of entriesin all your tables with sample 10 rows from each</h1><br/>
 
 OOPS Conecppt Implementation :- COMPLETED <br/>
 Non-blocking parallel ingestion of data :- COMPLETED ( Total time taken to run whole process 1.35 to 1.40 Mintues) <br/>
@@ -72,105 +72,127 @@ DESCRIPTION OF TASKS DONE TO ACHIEVE REQUIREMENTS.<br/>
 
 <h3>PART A:- Support for updating existing products</h3>
 
-1:- PRODUCTS table. :- This table contains The Product details.
+1:- PRODUCTS table. :- This table contains The Product details.<br/>
 
-As mentioned in the question 'sku' is the primary key, but 'sku'
-contains duplicate values. So I had to find out the composite primary
-key which can uniquely identify a row in database. So as i went through
-the data, i found that SKU + DESCRIPTION can be used as a composite
-primary key.
+As mentioned in the question 'sku' is the primary key, but 'sku'<br/>
+contains duplicate values. So I had to find out the composite primary<br/>
+key which can uniquely identify a row in database. So as i went through<br/>
+the data, i found that SKU + DESCRIPTION can be used as a composite<br/>
+primary key.<br/>
 
-COMPOSITE PRIMARY KEY :- SKU + DESCRIPTION
+COMPOSITE PRIMARY KEY :- SKU + DESCRIPTION<br/>
 
-So everytime we are dumping new CSV file, our database would get the
-record based on these 3 condition.
+So everytime we are dumping new CSV file, our database would get the<br/>
+record based on these 3 condition.<br/>
 
-     1:-) UPDATE:- If there is a  record in our Input csv file, which contains the composite primary key "SKU and DESCRIPTION"  that is already present in our databse, We will simply update the old Record in our database with the new one.
+     1:-) UPDATE:- If there is a  record in our Input csv file, which contains the composite primary key 
+     "SKU and DESCRIPTION"  that is already present in our databse, We will simply update the old Record in
+     our database with the new one.
      
-     2:-) INSERT:- If there is a  record in our Input CSV file for which we don't have "SKU and DESCRIPTION" present in our databse, that means it is a new entry, we will simply insert them in our database.
+     2:-) INSERT:- If there is a  record in our Input CSV file for which we don't have "SKU and DESCRIPTION" 
+     present in our databse, that means it is a new entry, we will simply insert them in our database.
      
-     3:-) KEEP OLD if no UPDATED entry for them:- If there is no record in our Input CSV file, which matches the composite primary key  "SKU and DESCRIPTION"   in our database, that means it haven't got any update, we keep that record as it is.
+     3:-) KEEP OLD if no UPDATED entry for them:- If there is no record in our Input CSV file, which matches 
+     the composite primary key  "SKU and DESCRIPTION"   in our database, that means it haven't got any update,
+     we keep that record as it is.
      
      WORKAROUND FOR THE PROBLEM :- 
      
-            Created two dataframe,  df1 :- spark dataframe with new record of input csv file, df2 :- spark dataframe existing data of database
+            Created two dataframe,  df1 :- spark dataframe with new record of input csv file, df2 :- spark dataframe
+            existing data of database
      
-        1:- Applied left join between df1 and df2 :- Join condition "df1.NAME = df2.NAME and df1.DESCRIPTION = df2.DESCRIPTION" , so as a result our output dataframe will have a:-) Eveything from df1 (left dataframe) regradless of join condition  which will have "UPDATED VALUES" PLUS "NEWELY INSERTED RECORD" let's assume this is our df3. BUT it won't have the data which exist only in df2 (right dataframe, the one we picked from database), these            are the old records.
+        1:- Applied left join between df1 and df2 :- Join condition "df1.NAME = df2.NAME and df1.DESCRIPTION = df2.DESCRIPTION",
+            so as a result our output dataframe will have a:-) Eveything from df1 (left dataframe) regradless of join condition  
+            which will have "UPDATED VALUES" PLUS "NEWELY INSERTED RECORD" let's assume this is our df3. BUT it won't have the data
+            which exist only in df2 (right dataframe, the one we picked from database), these are the old records.
         
-        2:-  No we just have to identify these old records and create a final dataframe which will have the data of "NEW RECORD" + "UPDATED RECORD" + "OLD RECORD FOR WHICH THERE IS NO ENTRY IN NEW DATAFRAME BY COMPOSITE PRIMARY KEY" for finding these old records i have added a temporary STATUS columnn in my both dataframe, which were refering to status 'OLD'  or 'NEW' , then applied the inner join df3 with df2 and filter out the record after           grouping them by using "SKU ,DESCRIPTION", count(STATUS) and having COUNT(STATUS) exactly as 1 and 'STATUS' = OLD, that means this was the record only exist in our databse for that composite Primary Key.
+        2:-  No we just have to identify these old records and create a final dataframe which will have the data of 
+             "NEW RECORD" + "UPDATED RECORD" + "OLD RECORD FOR WHICH THERE IS NO ENTRY IN NEW DATAFRAME BY COMPOSITE PRIMARY 
+             KEY" for finding these old records i have added a temporary STATUS columnn in my both dataframe, which were refering
+             to status 'OLD'  or 'NEW' , then applied the inner join df3 with df2 and filter out the record after grouping them by 
+             using "SKU ,DESCRIPTION", count(STATUS) and having COUNT(STATUS) exactly as 1 and 'STATUS' = OLD, that means this was
+             the record only exist in our databse for that composite Primary Key.
             
-        Now we have final dataframe consist of Clean record having single entry for this composite primary key SKU and DESCRIPTION.
+             Now we have final dataframe consist of Clean record having single entry for this composite primary key SKU and DESCRIPTION.
 
-===================| PART B:- Non-blocking parallel ingestion of data
-|=========================
+<h3>PART B:- Non-blocking parallel ingestion of data.</h3>
+
 
 1:- For Non-Blocking parallel ingestion and processing of the data
-ilevraged the Spark Framework.
+i levraged the Spark Framework.
 
     How i achieved this.
 
-    1:- We had a input file of half of million rows, Reading and processing that input file as a single unit would be very unefficient.
+    1:- We had a input file of half of million rows, Reading and processing that input file as a 
+        single unit would be very unefficient.
     2:- I have  python script to do the parition of the data and making the parallel database connection.
-    3:- def calc_num_partition():- This function is used to determine the number of relevant partition for the dataframe, because making too many partition of small dataset and too less parition of large datasets doesn't use memory efficiently. This function was returning the relvant number of parition based on the
+    3:- def calc_num_partition():- This function is used to determine the number of relevant partition for 
+        the dataframe, because making too many partition of small dataset and too less parition of large datasets
+        doesn't use memory efficiently. This function was returning the relvant number of parition based on the
         a:-) CPU Cores
         b:-) Worker Node
         c:-) Memory Expanantion
         d:-) And dataset size.
         
-    Now for example our dataset has 500000 rows, based on my cluster capacity, worker node, cpu core and dataset size my function would return near around 32 partiton consist of 15625 rows per parition, now when i would be doing any transformation on my data, it would be happening in these small dataset in parallel.
+    Now for example our dataset has 500000 rows, based on my cluster capacity, worker node, cpu core and dataset size
+    my function would return near around 32 partiton consist of 15625 rows per parition, now when i would be doing any
+    transformation on my data, it would be happening in these small dataset in parallel.
 
-    4:-) def calc_parallel_con():- In previous step we had 15625 rows in each partition having the total of 32 partition, but what is point of having these many partition in place if we are not dumping these partition in parallel, in to our database. So this function was returning the number of suitable parallel database connection that should be made while copying the data.
+    4:-) def calc_parallel_con():- In previous step we had 15625 rows in each partition having the total of 32 partition,
+    but what is point of having these many partition in place if we are not dumping these partition in parallel, in to our
+    database. So this function was returning the number of suitable parallel database connection that should be made while
+    copying the data.
 
     In this way i was able to do simple dump of the input file into database in 18 to 20 Seconds consist of 500000 rows.
-    And Dumping after applying our join our logic for handle updates and all, total time to calculate the output dataframe and dump that was 36 to 38 seonds.
+    And Dumping after applying our join our logic for handle updates and all, total time to calculate the output dataframe
+    and dump that was 36 to 38 seonds.
 
-=====================| PART C:- code should follow concept of OOPS
-|===============================
 
-Code is following the OOPS programming conecept. 1:- We have Classes for
-each specfic type of operation, have public, private, and protected
-specifier based on the criticality of class content it is holding. 2:-
-Code is meant to be dynamic. We have Class which can be used with any
-set of operation. For example we have class DBConnection(), inside this
-class we can have any database connector method, they all will follow
-the same structure, I am using snowflake as a databse, now for example i
-want to change my database to SQL Server, I just have to add new method
-in my this class with minimal number of changes. Same goes for
-ReadSource() class,DataTransformation class. Code is dynamic not just
-being used by PRODUCT table but with any another table, as long as we
-have the functionality that matches. Or we have the entry in pur
-dictionary.
+<h3>PART C:- code should follow concept of OOPS</h3><br/>
 
-=====================| PART D:- All product details are to be ingested
-into a single table |=============
+Code is following the OOPS programming conecept. <br/>
 
-Yes, All product details are ingested into a single table, This table
-will just be updated based on our UPDATE data logic.
+1:- We have Classes for each specfic type of operation, have public,<br/>
+private, and protected specifier based on the criticality of class <br/>
+content it is holding.<br/>
 
-====================| PART E: aggregated table on above rows with `name`
-and `no. of products`s |=======
+2:-Code is meant to be dynamic. We have Class which can be used with any<br/>
+set of operation. For example we have class DBConnection(), inside this<br/>
+class we can have any database connector method, they all will follow<br/>
+the same structure, I am using snowflake as a databse, now for example i<br/>
+want to change my database to SQL Server, I just have to add new method<br/>
+in my this class with minimal number of changes. Same goes for ReadSource()<br/>
+class,DataTransformation class. Code is dynamic not just<br/>
+being used by PRODUCT table but with any another table, as long as we<br/>
+have the functionality that matches or we have the entry in our<br/>
+dictionary.<br/>
 
-Yes we have table named as AGGREGATE\_PRODUCT\_TABLE in our database.
+<h3>PART D:- All product details are to be ingested into a single table</h3>
+Yes, All product details are ingested into a single table, This table<br/>
+will just be updated based on our UPDATE data logic.<br/>
 
-=====================| PART F: Count of Rows in each table
-|=========================================
+<h3>PART E: aggregated table on above rows with `name` and `no. of products`s.</h3>
 
-Count of Rows in each table. 1:- Dumped the input file twice without
-truncating the table. (Basically our dataframe contains evrything since
-it is cluster execution, i am bringing my data into spark cluster for
-processing, applying join on dataframe of database and dataframe of csv
-file,resultant dataset is written, so our final dataframe consist only
-what is expected).
+Yes we have table named as AGGREGATE\_PRODUCT\_TABLE in our database.<br/>
+
+<h3>PART F: Count of Rows in each table </h3>
+
+Count of Rows in each table. 1:- Dumped the input file twice without<br/>
+truncating the table. (Basically our dataframe contains evrything since<br/>
+it is cluster execution, i am bringing my data into spark cluster for<br/>
+processing, applying join on dataframe of database and dataframe of csv<br/>
+file,resultant dataset is written, so our final dataframe consist only<br/>
+what is expected).<br/>
 
 2:- After dumping the Input file twice. I have got the below rows count.
 
     TABLE                                   COUNT
     PRODUCTS                                5,00,000
-    AGGREGATE_PRODUCT_TABLE                         222,024
+    AGGREGATE_PRODUCT_TABLE                 222,024
 
-    This is because there is no changes in our input file for both time data dump, so nothing changes, There would still be the old record/
+    <h4>This is because there is no changes in our input file for both time data dump, so nothing changes, There would still be the old record</h4>
 
-    PRODUCTS TABLE SAMPPLE DATA.
+    PRODUCTS TABLE SAMPLE DATA.
     +---------------+-------------------+--------------------+
     |           NAME|                SKU|         DESCRIPTION|
     +---------------+-------------------+--------------------+
@@ -227,16 +249,15 @@ what is expected).
     INFO :: Completed All Function Execution.
     Command took 1.30 minutes -- by vinay.11605674@lpu.in at 6/29/2020, 1:39:26 PM on POSTMAN_ENG
 
-=========================================================================================================
+
 <h1>SECTION E: What would you improve if given more days </h1>
-=========================================================================================================
-1:- I would chamge the way the code is writing into database, Dumping
-the spark dataframe od given csv file with these 500000 records without
-any transformation is taking 18 to 20 second to dump, But we can make it
-more faster by using internal stage area of snowflake, It would hardly
-take 5 to 7 second without transformation.
 
-2:- We can Still Improve parallel Procesing by setting the degree of
-parallelism on the basis of other factors.
+1:- I would chamge the way the code is writing into database, Dumping<br/>
+the spark dataframe od given csv file with these 500000 records without<br/>
+any transformation is taking 18 to 20 second to dump, But we can make it<br/>
+more faster by using internal stage area of snowflake, It would hardly<br/>
+take 5 to 7 second without transformation.<br/>
 
-==========================================================================================================
+2:- We can Still Improve parallel Procesing by setting the degree of<br/>
+parallelism on the basis of other factors.<br/>
+
