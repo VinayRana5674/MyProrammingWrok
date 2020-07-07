@@ -74,16 +74,11 @@ DESCRIPTION OF TASKS DONE TO ACHIEVE REQUIREMENTS.<br/>
 
 1:- PRODUCTS table. :- This table contains The Product details.<br/>
 
-As mentioned in the question 'sku' is the primary key, but 'sku'<br/>
-contains duplicate values. So I had to find out the composite primary<br/>
-key which can uniquely identify a row in database. So as i went through<br/>
-the data, i found that SKU + DESCRIPTION can be used as a composite<br/>
-primary key.<br/>
+As mentioned in the question 'sku' is the primary key, but 'sku' contains duplicate values. So I had to find out the composite primary key which can uniquely identify a row in database. So as i went through the data, i found that SKU + DESCRIPTION can be used as a composite primary key.<br/>
 
 COMPOSITE PRIMARY KEY :- SKU + DESCRIPTION<br/>
 
-So everytime we are dumping new CSV file, our database would get the<br/>
-record based on these 3 condition.<br/>
+So everytime we are dumping new CSV file, our database would get the record based on these 3 condition.<br/>
 
      1:-) UPDATE:- If there is a  record in our Input csv file, which contains the composite primary key 
      "SKU and DESCRIPTION"  that is already present in our databse, We will simply update the old Record in
@@ -118,8 +113,7 @@ record based on these 3 condition.<br/>
 <h3>PART B:- Non-blocking parallel ingestion of data.</h3>
 
 
-1:- For Non-Blocking parallel ingestion and processing of the data
-i levraged the Spark Framework.
+1:- For Non-Blocking parallel ingestion and processing of the data i have levraged the Spark Framework.
 
     How i achieved this.
 
@@ -152,24 +146,11 @@ i levraged the Spark Framework.
 
 Code is following the OOPS programming conecept. <br/>
 
-1:- We have Classes for each specfic type of operation, have public,<br/>
-private, and protected specifier based on the criticality of class <br/>
-content it is holding.<br/>
+1:- We have Classes for each specfic type of operation, have public, private, and protected specifier based on the criticality of class content it is holding.<br/>
 
-2:-Code is meant to be dynamic. We have Class which can be used with any<br/>
-set of operation. For example we have class DBConnection(), inside this<br/>
-class we can have any database connector method, they all will follow<br/>
-the same structure, I am using snowflake as a databse, now for example i<br/>
-want to change my database to SQL Server, I just have to add new method<br/>
-in my this class with minimal number of changes. Same goes for ReadSource()<br/>
-class,DataTransformation class. Code is dynamic not just<br/>
-being used by PRODUCT table but with any another table, as long as we<br/>
-have the functionality that matches or we have the entry in our<br/>
-dictionary.<br/>
+2:-Code is meant to be dynamic. We have Class which can be used with any set of operation. For example we have class DBConnection(), inside this class we can have any database connector method, they all will follow the same structure, I am using snowflake as a databse, now for example i want to change my database to SQL Server, I just have to add new method in my this class with minimal number of changes. Same goes for ReadSource() class,DataTransformation class. Code is dynamic not just being used by PRODUCT table but with any another table, as long as we have the functionality that matches or we have the entry in our dictionary.<br/>
 
-<h3>PART D:- All product details are to be ingested into a single table</h3>
-Yes, All product details are ingested into a single table, This table<br/>
-will just be updated based on our UPDATE data logic.<br/>
+<h3>PART D:- All product details are to be ingested into a single table Yes, All product details are ingested into a single table, This table will just be updated based on our UPDATE data logic.<br/>
 
 <h3>PART E: aggregated table on above rows with `name` and `no. of products`s.</h3>
 
@@ -177,12 +158,7 @@ Yes we have table named as AGGREGATE\_PRODUCT\_TABLE in our database.<br/>
 
 <h3>PART F: Count of Rows in each table </h3>
 
-Count of Rows in each table. 1:- Dumped the input file twice without<br/>
-truncating the table. (Basically our dataframe contains evrything since<br/>
-it is cluster execution, i am bringing my data into spark cluster for<br/>
-processing, applying join on dataframe of database and dataframe of csv<br/>
-file,resultant dataset is written, so our final dataframe consist only<br/>
-what is expected).<br/>
+Count of Rows in each table. 1:- Dumped the input file twice without truncating the table. (Basically our dataframe contains evrything since it is cluster execution, i am bringing my data into spark cluster for processing, applying join on dataframe of database and dataframe of csv file,resultant dataset is written, so our final dataframe consist only what is expected).<br/>
 
 2:- After dumping the Input file twice. I have got the below rows count.
 
@@ -252,12 +228,7 @@ what is expected).<br/>
 
 <h1>SECTION E: What would you improve if given more days </h1>
 
-1:- I would chamge the way the code is writing into database, Dumping<br/>
-the spark dataframe od given csv file with these 500000 records without<br/>
-any transformation is taking 18 to 20 second to dump, But we can make it<br/>
-more faster by using internal stage area of snowflake, It would hardly<br/>
-take 5 to 7 second without transformation.<br/>
+1:- I would chamge the way the code is writing into database, Dumping the spark dataframe od given csv file with these 500000 records without any transformation is taking 18 to 20 second to dump, But we can make it more faster by using internal stage area of snowflake, It would hardly take 5 to 7 second without transformation.<br/>
 
-2:- We can Still Improve parallel Procesing by setting the degree of<br/>
-parallelism on the basis of other factors.<br/>
+2:- We can Still Improve parallel Procesing by setting the degree of parallelism on the basis of other factors.<br/>
 
