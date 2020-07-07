@@ -150,7 +150,9 @@ Code is following the OOPS programming conecept. <br/>
 
 2:-Code is meant to be dynamic. We have Class which can be used with any set of operation. For example we have class DBConnection(), inside this class we can have any database connector method, they all will follow the same structure, I am using snowflake as a databse, now for example i want to change my database to SQL Server, I just have to add new method in my this class with minimal number of changes. Same goes for ReadSource() class,DataTransformation class. Code is dynamic not just being used by PRODUCT table but with any another table, as long as we have the functionality that matches or we have the entry in our dictionary.<br/>
 
-<h3>PART D:- All product details are to be ingested into a single table Yes, All product details are ingested into a single table, This table will just be updated based on our UPDATE data logic.<br/>
+<h3>PART D:- All product details are to be ingested into a single table.</h3>
+
+Yes, All product details are ingested into a single table, This table will just be updated based on our UPDATE data logic.<br/>
 
 <h3>PART E: aggregated table on above rows with `name` and `no. of products`s.</h3></br>
 
