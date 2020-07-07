@@ -1,5 +1,5 @@
-SECTION A:- Steps to run code. 
-
+================================= SECTION A:- Steps to run code. |
+=================================
 
 It is setup in Azure Databricks, Created a custom databricks runtime
 image too but that would eventually take lot of setup you to run. So the
@@ -32,10 +32,10 @@ Once login in successfull please open the notebook with given url and
 just click on run all. My main method is at the end of code, their you
 can see the LOGS of code execution.
 
-
+===========================================================================================
 SECTION B :-) Details of all the tables and their schema, [with commands
 to recreate them] |
-
+============================================================================================
 
 1:- PRODUCTS TABLE ( CONSIST OF PRODUCT DETAILS) 2:-
 AGGREGATE\_PRODUCT\_TABLE ( CONSIST of rows with "name" and "no. of
