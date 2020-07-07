@@ -152,7 +152,7 @@ Code is following the OOPS programming conecept. <br/>
 
 <h3>PART D:- All product details are to be ingested into a single table Yes, All product details are ingested into a single table, This table will just be updated based on our UPDATE data logic.<br/>
 
-<h3>PART E: aggregated table on above rows with `name` and `no. of products`s.</h3>
+<h3>PART E: aggregated table on above rows with `name` and `no. of products`s.</h3></br>
 
 Yes we have table named as AGGREGATE\_PRODUCT\_TABLE in our database.<br/>
 
